@@ -132,6 +132,14 @@ function check_product()
         echo "Couldn't locate the top of the tree.  Try setting TOP." >&2
         return
     fi
+
+    if (echo -n $1 | grep -q -e "^screwd_") ; then
+       SCREWD_BUILD=$(echo -n $1 | sed -e 's/^screwd_//g')
+    else
+       SCREWD_BUILD=
+    fi
+    export SCREWD_BUILD
+
         TARGET_PRODUCT=$1 \
         TARGET_BUILD_VARIANT= \
         TARGET_BUILD_TYPE= \
