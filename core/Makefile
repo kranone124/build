@@ -1518,9 +1518,9 @@ otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 bacon: otapackage
 ifneq ($(TARGET_CUSTOM_RELEASETOOL),)
 	@echo "Running releasetool"
-	$(hide) $(TARGET_CUSTOM_RELEASETOOL)
+	$(hide) OTAPACKAGE=$(PWD)/$(INTERNAL_OTA_PACKAGE_TARGET) $(TARGET_CUSTOM_RELEASETOOL)
 else
-	$(hide) ./vendor/cm/tools/squisher
+	$(hide) OTAPACKAGE=$(PWD)/$(INTERNAL_OTA_PACKAGE_TARGET) ./vendor/cm/tools/squisher
 endif
 
 endif    # recovery_fstab is defined
