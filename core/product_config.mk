@@ -179,9 +179,9 @@ include $(BUILD_SYSTEM)/node_fns.mk
 include $(BUILD_SYSTEM)/product.mk
 include $(BUILD_SYSTEM)/device.mk
 
-# A PA build needs only the PA product makefiles.
-ifneq ($(PA_BUILD),)
-  all_product_configs := $(shell ls vendor/pa/products/pa_$(PA_BUILD).mk)
+# A SCREWD build needs only the SCREWD product makefiles.
+ifneq ($(SCRED_BUILD),)
+  all_product_configs := $(shell ls vendor/screwd/products/screwd_$(SCREWD_BUILD).mk)
 else
   ifneq ($(strip $(TARGET_BUILD_APPS)),)
   # An unbundled app build needs only the core product makefiles.
@@ -192,9 +192,9 @@ else
     # files in the tree.
     all_product_configs := $(get-all-product-makefiles)
   endif # TARGET_BUILD_APPS
-endif # PA_BUILD
+endif # SCREWD_BUILD
 
-ifeq ($(PA_BUILD),)
+ifeq ($(SCREWD_BUILD),)
 # Find the product config makefile for the current product.
 # all_product_configs consists items like:
 # <product_name>:<path_to_the_product_makefile>
