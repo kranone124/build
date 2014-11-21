@@ -180,7 +180,7 @@ include $(BUILD_SYSTEM)/product.mk
 include $(BUILD_SYSTEM)/device.mk
 
 # A SCREWD build needs only the SCREWD product makefiles.
-ifneq ($(SCRED_BUILD),)
+ifneq ($(SCREWD_BUILD),)
   all_product_configs := $(shell ls vendor/screwd/products/screwd_$(SCREWD_BUILD).mk)
 else
   ifneq ($(strip $(TARGET_BUILD_APPS)),)
