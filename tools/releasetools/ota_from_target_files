@@ -589,8 +589,8 @@ def WriteFullOTAPackage(input_zip, output_zip):
   device = GetBuildProp("ro.product.device", OPTIONS.info_dict)
   model = GetBuildProp("ro.product.model", OPTIONS.info_dict)
   modver = GetBuildProp("ro.modversion", OPTIONS.info_dict)
-  script.Print("*   Device: %s (%s)"%(model, device))
-  script.Print("*   Version: %s"%(modver)); 
+  script.Print("   Device: %s (%s)"%(model, device))
+  script.Print("   Version: %s"%(modver)); 
   
   
   if OPTIONS.wipe_user_data:
