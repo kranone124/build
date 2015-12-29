@@ -250,11 +250,9 @@ endif
 
 my_cppflags := $(my_cpp_std_version) $(my_cppflags)
 
-# Export compiler type for display
-ifneq ($(my_clang),true)
-    my_compiler := gcc
-else
-    my_compiler := clang
+# Include DragonTC Optimizations
+ifneq ($(DISABLE_DTC_OPTS),true)
+  include $(BUILD_SYSTEM)/dragontc.mk
 endif
 
 # arch-specific static libraries go first so that generic ones can depend on them
