@@ -626,8 +626,8 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
 """ % bcb_dev)
 
   # Dump fingerprints
-  script.Print("Target: %s" % CalculateFingerprint(
-      oem_props, oem_dict, OPTIONS.info_dict))
+  #script.Print("Target: %s" % CalculateFingerprint(
+  #    oem_props, oem_dict, OPTIONS.info_dict))
 
   script.AppendExtra("ifelse(is_mounted(\"/system\"), unmount(\"/system\"));")
   device_specific.FullOTA_InstallBegin()
@@ -639,6 +639,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
       common.ZipWriteStr(output_zip, "system/bin/backuptool.functions",
                      ""+input_zip.read("SYSTEM/bin/backuptool.functions"))
     script.Mount("/system")
+    script.Print("Please wait... Running backup")
     script.RunBackup("backup")
     script.Unmount("/system")
 
@@ -648,9 +649,23 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
     system_progress -= 0.1
   if HasVendorPartition(input_zip):
     system_progress -= 0.1
+    
+  script.Print("******************************************")
+  script.Print("                                   /\ .___")
+  script.Print("  ______ ___________   ______  _  _)/_| _/")
+  script.Print(" /  ___// ___\_  __ \_/ __ \ \/ \/ / __ | ")
+  script.Print(" \___  \  \___|  | \/\  ___/\     / /_/ | ")
+  script.Print("/____  >\___  >__|    \___  >\/\_/\____ | ")
+  script.Print("     \/     \/            \/           \/ ")
+  script.Print("  ")
+  script.Print("******************************************")
+  device = GetBuildProp("ro.product.device", OPTIONS.info_dict)
+  model = GetBuildProp("ro.product.model", OPTIONS.info_dict)
+  modver = GetBuildProp("ro.screwd.version", OPTIONS.info_dict)
+  script.Print(" ")
+  script.Print("Device: %s (%s)"%(model, device))
+  script.Print("Version: %s"%(modver)); 
 
-  # Place a copy of file_contexts.bin into the OTA package which will be used
-  # by the recovery program.
   if "selinux_fc" in OPTIONS.info_dict:
     WritePolicyConfig(OPTIONS.info_dict["selinux_fc"], output_zip)
 
@@ -720,10 +735,12 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
     if block_based:
       script.Mount("/system")
     script.RunBackup("restore")
+    script.Print("Restoring backup...")
     if block_based:
       script.Unmount("/system")
 
   script.ShowProgress(0.05, 5)
+  script.Print("Flashing kernel...")
   script.WriteRawImage("/boot", "boot.img")
 
   script.Print("Flashing SuperSU...")
@@ -743,6 +760,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
     script.Mount("/system")
 
   script.UnmountAll()
+  script.Print("Flash Complete!")  
 
   if OPTIONS.wipe_user_data:
     script.ShowProgress(0.1, 10)
