@@ -43,7 +43,7 @@ DEBUG = False
 default_manifest = ".repo/manifest.xml"
 
 custom_local_manifest = ".repo/local_manifests/screwd_manifest.xml"
-custom_default_revision = "m"
+custom_default_revision = "n"
 custom_dependencies = "screwd.dependencies"
 org_manifest = "ScrewdAOSP"  # leave empty if org is provided in manifest
 org_display = "ScrewdAOSP"  # needed for displaying
