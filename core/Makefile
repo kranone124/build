@@ -1897,6 +1897,23 @@ bootzip: bootimage
 
 bacon: otapackage
 
+	$(hide) $(MD5SUM) $(INTERNAL_OTA_PACKAGE_TARGET) > $(INTERNAL_OTA_PACKAGE_TARGET).md5sum
+	@echo -e ${CL_MAG}"      ▄████████  ▄████████    ▄████████    ▄████████   ▄█     █▄  ████████▄ "${CL_MAG} 
+	@echo -e ${CL_MAG}"     ███     ███ ███    ███   ███    ███   ███    ███ ███     ███ ███   ▀███"${CL_MAG}
+	@echo -e ${CL_MAG}"     ██      █▀  ███    █▀    ███    ███   ███    █▀  ███     ███ ███    ███ "${CL_MAG}
+	@echo -e ${CL_MAG}"    ███          ███         ▄███▄▄▄▄██▀  ▄███▄▄▄     ███     ███ ███    ███ "${CL_MAG}
+	@echo -e ${CL_MAG}"   ▀███████████  ███       ▀▀███▀▀▀▀▀   ▀▀███▀▀▀      ███     ███ ███    ███ "${CL_MAG}
+	@echo -e ${CL_MAG}"             ███ ███    █▄  ▀███████████   ███    █▄  ███     ███ ███    ███ "${CL_MAG}
+	@echo -e ${CL_MAG}"       ▄█    ███ ███    ███   ███    ███   ███    ███ ███ ▄█▄ ███ ███   ▄███ "${CL_MAG}
+	@echo -e ${CL_MAG}"     ▀█████████▀  ████████▀   ███    ███   ██████████  ▀███▀███▀  ████████▀  "${CL_MAG}
+	@echo -e ${CL_MAG}"                              ██     ██                                     "${CL_MAG}
+	@echo -e ${CL_MAG}"                             █      █                                     "${CL_MAG}
+	@echo -e ${CLR_RST}"                                                                           "${CLR_RST}
+	@echo -e ${CL_RST}"        ZIP: "${CL_RST} $$(basename $(INTERNAL_OTA_PACKAGE_TARGET))${CL_RST}
+	@echo -e ${CL_RST}"        Size:"${CL_RST}" `ls -la --si $(INTERNAL_OTA_PACKAGE_TARGET) | cut -d ' ' -f 5`"${CL_RST}
+	@echo -e ${CL_MAG}"        Remember, you ain't shit if you've never been Screw'd up. Enjoy!   "${CL_MAG}
+	@echo -e ${CLR_RST}"                                                                           "${CLR_RST}
+
 endif    # build_ota_package
 
 # -----------------------------------------------------------------
