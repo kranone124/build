@@ -85,40 +85,41 @@ DISABLE_POLLY_arm := \
   libicuuc
 
 DISABLE_POLLY_arm64 := \
-  libjpeg_static \
-  libicuuc \
-  libwebp-decode \
-  libwebp-encode \
-  libpdfiumfxge \
-  libskia_static \
-  libaudioutils \
-  libpdfium% \
-  libLLVMSupport \
-  libsvoxpico \
-  libRS_internal \
-  libvpx \
-  libopus \
-  libv8 \
-  libsonic \
-  libaudioflinger \
-  libstagefright% \
-  libart \
-  libFFTEm \
-  libRSCpuRef \
-  libbnnmlowp \
-  libmedia_jni \
-  libFraunhoferAAC \
-  libavcdec \
-  libavcenc \
-  libmpeg2dec \
-  libwebrtc% \
-  libmusicbundle \
-  libreverb \
-  libscrypt_static \
-  libmpeg2dec \
-  libcrypto_static \
-  libcrypto \
-  libyuv%
+libjpeg_static \
+libicuuc \
+libwebp-decode \
+libwebp-encode \
+libpdfiumfxge \
+libskia_static \
+libaudioutils \
+libpdfium% \
+libLLVMSupport \
+libsvoxpico \
+libRS_internal \
+libvpx \
+libopus \
+libv8 \
+libsonic \
+libaudioflinger \
+libstagefright% \
+libart \
+libF77blas \
+libFFTEm \
+libRSCpuRef \
+libbnnmlowp \
+libmedia_jni \
+libFraunhoferAAC \
+libavcdec \
+libavcenc \
+libmpeg2dec \
+libwebrtc% \
+libmusicbundle \
+libreverb \
+libscrypt_static \
+libmpeg2dec \
+libcrypto_static \
+libcrypto \
+libyuv%
 
 # Set DISABLE_POLLY based on arch
 DISABLE_POLLY := \
