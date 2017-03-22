@@ -605,7 +605,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
 
   if OPTIONS.override_prop:
     metadata = {
-        "post-timestamp": GetBuildProp("ro.build.date.utc", OPTIONS.info_dict),
+	"post-timestamp": GetBuildProp("ro.build.date.utc", OPTIONS.info_dict),
     }
   else:
     metadata = {
@@ -718,7 +718,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.Print("     \/     \/            \/           \/ ")
   script.Print("  ")
   script.Print("******************************************")
-  device = GetBuildProp("ro.product.device", OPTIONS.info_dict)
+  device = GetBuildProp("ro.screwd.device.short", OPTIONS.info_dict)
   modver = GetBuildProp("ro.screwd.version", OPTIONS.info_dict)
   if GetBuildProp("ro.product.model", OPTIONS.info_dict) is not None:
     model = GetBuildProp("ro.product.model", OPTIONS.info_dict)
@@ -1686,18 +1686,18 @@ def WriteIncrementalOTAPackage(target_zip, source_zip, output_zip):
     source_fp = CalculateFingerprint(oem_props, oem_dict,
                                      OPTIONS.source_info_dict)
 
-    if oem_props is None:
-      script.AssertSomeFingerprint(source_fp, target_fp)
-    else:
-      script.AssertSomeThumbprint(
-          GetBuildProp("ro.build.thumbprint", OPTIONS.target_info_dict),
-          GetBuildProp("ro.build.thumbprint", OPTIONS.source_info_dict))
+  if oem_props is None:
+     script.AssertSomeFingerprint(source_fp, target_fp)
+  else:
+     script.AssertSomeThumbprint(
+         GetBuildProp("ro.build.thumbprint", OPTIONS.target_info_dict),
+         GetBuildProp("ro.build.thumbprint", OPTIONS.source_info_dict))
 
-    metadata["pre-build"] = source_fp
-    metadata["post-build"] = target_fp
-    metadata["pre-build-incremental"] = GetBuildProp(
+  metadata["pre-build"] = source_fp
+  metadata["post-build"] = target_fp
+  metadata["pre-build-incremental"] = GetBuildProp(
       "ro.build.version.incremental", OPTIONS.source_info_dict)
-    metadata["post-build-incremental"] = GetBuildProp(
+  metadata["post-build-incremental"] = GetBuildProp(
       "ro.build.version.incremental", OPTIONS.target_info_dict)
 
   source_boot = common.GetBootableImage(
