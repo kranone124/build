@@ -877,7 +877,4 @@ ifneq ($(SCREWD_BUILD),)
 $(eval include vendor/screwd/sepolicy/sepolicy.mk)
 endif
 
-# Screw'd common sepolicy
-include $(TOPDIR)vendor/screwd/sepolicy/sepolicy.mk
-
 include $(BUILD_SYSTEM)/dumpvar.mk
