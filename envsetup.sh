@@ -564,7 +564,7 @@ function breakfast()
     target=$1
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
-    if [[ $( grep -i "codeaurora" "${1}"manifest/manifests/screwd.xml) ]]; then
+    if [[ $( grep -i "caf" manifest/manifests/screwd.xml) ]]; then
     for caf in `/bin/ls vendor/screwd/caf-vendorsetup.sh 2> /dev/null`
         do
             echo "including $caf"
@@ -572,7 +572,7 @@ function breakfast()
         done
     unset caf
     else
-    for aosp in `/bin/ls vendor/du/vendorsetup.sh 2> /dev/null`
+    for aosp in `/bin/ls vendor/screwd/vendorsetup.sh 2> /dev/null`
         do
             echo "including $aosp"
             . $aosp
@@ -651,7 +651,7 @@ function lunch()
         # if we can't find the product, try to grab it from our github
         T=$(gettop)
         pushd $T > /dev/null
-    if [[ $( grep -i "codeaurora" "${1}"manifest/o8x_default.xml) ]]; then
+    if [[ $( grep -i "codeaurora" "${1}"manifest/manifests/screwd.xml) ]]; then
         vendor/extras/tools/roomservice-caf.py $product
     else
         vendor/extras/tools/roomservice.py $product
