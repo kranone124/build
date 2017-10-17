@@ -578,7 +578,20 @@ function breakfast()
                 . $aosp
             done
         unset aosp
+    fi
 
+    if [ $# -eq 0 ]; then
+        # No arguments, so let's have the full menu
+        lunch
+    else
+        echo "z$target" | grep -q "-"
+        if [ $? -eq 0 ]; then
+            # A buildtype was specified, assume a full device name
+            lunch $target
+        else
+            # This is probably just the screwd model name
+            lunch screwd_$target-userdebug
+        fi
     fi
 
     return $?
