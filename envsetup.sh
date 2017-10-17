@@ -651,7 +651,7 @@ function lunch()
         # if we can't find the product, try to grab it from our github
         T=$(gettop)
         pushd $T > /dev/null
-    if [[ $( grep -i "codeaurora" "${1}"manifest/manifests/screwd.xml) ]]; then
+    if [[ $( grep -i "codeaurora" manifest/manifests/screwd.xml) ]]; then
         vendor/extras/tools/roomservice-caf.py $product
     else
         vendor/extras/tools/roomservice.py $product
@@ -1763,7 +1763,7 @@ if [ "x$SHELL" != "x/bin/bash" ]; then
 fi
 
 # Execute the contents of any caf-vendorsetup.sh files we can find.
-if [[ $( grep -r "codeaurora" "${1}"manifest/manifests* ) ]]; then
+if [[ $( grep -r "codeaurora" manifest/manifests* ) ]]; then
     for caf in `test -d device && find -L device -maxdepth 4 -name 'caf-vendorsetup.sh' 2> /dev/null | sort` \
              `test -d vendor && find -L vendor -maxdepth 4 -name 'caf-vendorsetup.sh' 2> /dev/null | sort` \
              `test -d product && find -L product -maxdepth 4 -name 'caf-vendorsetup.sh' 2> /dev/null | sort`
