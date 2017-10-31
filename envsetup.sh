@@ -664,7 +664,7 @@ function lunch()
         # if we can't find the product, try to grab it from our github
         T=$(gettop)
         pushd $T > /dev/null
-        if [[ $( grep -i "codeaurora" manifest/manifests/screwd.xml) ]]; then
+        if [[ $( grep -i "caf" manifest/manifests/screwd.xml) ]]; then
             vendor/extras/tools/roomservice-caf.py $product
         else
             vendor/extras/tools/roomservice.py $product
