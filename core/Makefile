@@ -1,5 +1,14 @@
 # Put some miscellaneous rules here
 
+CL_PFX="\033[33m"
+CL_INS="\033[36m"
+CL_RED="\033[31m"
+CL_GRN="\033[32m"
+CL_YLW="\033[33m"
+CL_BLU="\033[34m"
+CL_MAG="\033[35m"
+CL_CYN="\033[36m"
+CL_RST="\033[0m"
 # HACK: clear LOCAL_PATH from including last build target before calling
 # intermedites-dir-for
 LOCAL_PATH := $(BUILD_SYSTEM)
@@ -2491,6 +2500,24 @@ bootzip: bootimage
 	   $(TARGET_DEVICE)
 
 bacon: otapackage
+
+	$(hide) $(MD5SUM) $(INTERNAL_OTA_PACKAGE_TARGET) > $(INTERNAL_OTA_PACKAGE_TARGET).md5sum
+	@echo -e ${CL_MAG}""${CL_MAG}
+	@echo -e ${CL_MAG}"      ▄████████  ▄████████    ▄████████    ▄████████   ▄█     █▄  ████████▄ "${CL_MAG} 
+	@echo -e ${CL_MAG}"     ███     ███ ███    ███   ███    ███   ███    ███ ███     ███ ███   ▀███"${CL_MAG}
+	@echo -e ${CL_MAG}"     ██      █▀  ███    █▀    ███    ███   ███    █▀  ███     ███ ███    ███ "${CL_MAG}
+	@echo -e ${CL_MAG}"    ███          ███         ▄███▄▄▄▄██▀  ▄███▄▄▄     ███     ███ ███    ███ "${CL_MAG}
+	@echo -e ${CL_MAG}"   ▀███████████  ███       ▀▀███▀▀▀▀▀   ▀▀███▀▀▀      ███     ███ ███    ███ "${CL_MAG}
+	@echo -e ${CL_MAG}"             ███ ███    █▄  ▀███████████   ███    █▄  ███     ███ ███    ███ "${CL_MAG}
+	@echo -e ${CL_MAG}"       ▄█    ███ ███    ███   ███    ███   ███    ███ ███ ▄█▄ ███ ███   ▄███ "${CL_MAG}
+	@echo -e ${CL_MAG}"     ▀█████████▀  ████████▀   ███    ███   ██████████  ▀███▀███▀  ████████▀  "${CL_MAG}
+	@echo -e ${CL_MAG}"                              ██     ██                                     "${CL_MAG}
+	@echo -e ${CL_MAG}"                             █      █                                     "${CL_MAG}
+	@echo -e ${CLR_RST}"                                                                           "${CLR_RST}
+	@echo -e ${CL_RST}"        ZIP: "${CL_RST} $$(basename $(INTERNAL_OTA_PACKAGE_TARGET))${CL_RST}
+	@echo -e ${CL_RST}"        Size:"${CL_RST}" `ls -la --si $(INTERNAL_OTA_PACKAGE_TARGET) | cut -d ' ' -f 5`"${CL_RST}
+	@echo -e ${CL_MAG}"        Remember, you ain't shit if you've never been Screw'd up. Enjoy!   "${CL_MAG}
+	@echo -e ${CLR_RST}"                                                                           "${CLR_RST}
 
 endif    # build_ota_package
 
