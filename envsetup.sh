@@ -1817,3 +1817,5 @@ if [[ $( grep -r "caf" manifest/manifests* ) ]]; then
 fi
 
 addcompletions
+
+export ANDROID_BUILD_TOP=$(gettop)
