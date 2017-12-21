@@ -583,7 +583,7 @@ function breakfast()
         done
     unset caf
     else
-    for aosp in `/bin/ls vendor/screwd/vendorsetup.sh 2> /dev/null``
+    for aosp in `/bin/ls vendor/screwd/vendorsetup.sh 2> /dev/null`
         do
             echo "including $aosp"
             . $aosp
